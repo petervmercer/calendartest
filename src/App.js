@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Calendar from './components/Calendar';
 import './App.css';
+import styled from "styled-components";
+
+const AppWrapper = styled.div`
+    text-align:center;
+`;
 
 class App extends Component {
     render() {
         return (
-            <div className="App">
+            <AppWrapper>
                 <header>
                     <div id="logo">
                         <span className="icon">date_range</span>
@@ -17,7 +22,7 @@ class App extends Component {
                 <main>
                     <Calendar />
                 </main>
-            </div>
+            </AppWrapper>
         );
     }
 }
