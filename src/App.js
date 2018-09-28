@@ -40,6 +40,11 @@ const AppIcon = styled.span`
     text-rendering: optimizeLegibility;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'liga';
+    
+    font-size: 175%;
+    text-align: center;
+    color: #1a8fff;
+    line-height: 1;
      
     cursor: pointer;
     transition: .15s ease-out;
@@ -58,6 +63,15 @@ const AppIcon = styled.span`
         margin-right: 1em;
     }
     
+    
+    
+`;
+
+const AppLogoText = styled.span`
+font-size: 175%;
+    text-align: center;
+    color: #1a8fff;
+    line-height: 1;
 `;
 
 class App extends Component {
@@ -67,9 +81,9 @@ class App extends Component {
                 <AppHeader>
                     <AppLogo id="logo">
                         <AppIcon >date_range</AppIcon>
-                        <span>
+                        <AppLogoText>
                             react<b>calendar</b>
-                        </span>
+                        </AppLogoText>
                     </AppLogo>
                 </AppHeader>
 
