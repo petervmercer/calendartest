@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Calendar from './components/Calendar';
+import AppIconSpan from './components/icon';
 //import './App.css';
 import styled from "styled-components";
 import './styles/Theme/globalStyle';
@@ -80,7 +81,7 @@ class App extends Component {
             <AppWrapper>
                 <AppHeader>
                     <AppLogo id="logo">
-                        <AppIcon >date_range</AppIcon>
+                        <AppIconSpan >date_range</AppIconSpan>
                         <AppLogoText>
                             react<b>calendar</b>
                         </AppLogoText>

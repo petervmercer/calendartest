@@ -1,5 +1,18 @@
 import React from "react";
 import dateFns from "date-fns";
+import styled from 'styled-components';
+
+const MonthHeader = styled.div`    
+    border-bottom: 1px solid #eee;
+    background: var(#fff);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    
+`;
 
 class Calendar extends React.Component {
     state = {
@@ -11,7 +24,7 @@ class Calendar extends React.Component {
         const dateFormat = "MMMM YYYY";
 
         return (
-            <div className="header row flex-middle">
+            <MonthHeader>
                 <div className="col col-start">
                     <div className="icon" onClick={this.prevMonth}>
                         chevron_left
@@ -25,7 +38,7 @@ class Calendar extends React.Component {
                 <div className="col col-end" onClick={this.nextMonth}>
                     <div className="icon">chevron_right</div>
                 </div>
-            </div>
+            </MonthHeader>
         );
     }
 
