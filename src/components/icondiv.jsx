@@ -1,6 +1,8 @@
 import styled, {extend} from 'styled-components';
-import AppIconSpan from './icon';
+import iconCss from './icon_css';
 
-const AppIconDiv = styled.extend(AppIconSpan);
+const AppIconDiv = styled.div`
+${iconCss}
+`;
 
 export default AppIconDiv;
