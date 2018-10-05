@@ -54,6 +54,32 @@ display: block;
     border: 1px solid #eee;
 `;
 
+const DayBox = styled.div`
+flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+`;
+
+const DayRow = styled.div`
+text-transform: uppercase;
+    font-weight: 400;
+    color: #ccc;
+    font-size: 70%;
+    padding: .75em 0;
+    border-bottom: 1px solid #eee;
+    
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+`;
+
+
+
 
 class Calendar extends React.Component {
     state = {
@@ -89,12 +115,12 @@ class Calendar extends React.Component {
         let startDate = dateFns.startOfWeek(this.state.currentMonth);
         for (let i = 0; i < 7; i++) {
             days.push(
-                <div className="col col-center" key={i}>
+                <DayBox key={i}>
                     {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
-                </div>
+                </DayBox>
             );
         }
-        return <div className="days row">{days}</div>;
+        return <DayRow>{days}</DayRow>;
     }
 
     renderCells() {
@@ -159,6 +185,7 @@ class Calendar extends React.Component {
         return (
             <CalendarDiv>
                 {this.renderHeader()}
+                {this.renderDays()}
 
             </CalendarDiv>
         );
