@@ -41,3 +41,5 @@ const iconCss = css`
         margin-right: 1em;
     }
 `;
+
+export default iconCss;
