@@ -13,6 +13,12 @@ const MonthHeader = styled.div`
     flex-wrap: wrap;
     width: 100%;
     
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 115%;
+    padding: 1.5em 0;
+    border-bottom: 1px solid #eee;
+    
 `;
 
 const MonthLeft = styled.div`
@@ -38,6 +44,14 @@ flex-grow: 1;
     justify-content: center;
     text-align: center;
 
+`;
+
+const CalendarDiv = styled.div`
+display: block;
+    position: relative;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
 `;
 
 
@@ -143,10 +157,10 @@ class Calendar extends React.Component {
 
     render() {
         return (
-            <div className="calendar">
+            <CalendarDiv>
                 {this.renderHeader()}
 
-            </div>
+            </CalendarDiv>
         );
     }
 }

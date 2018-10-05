@@ -40,6 +40,9 @@ const iconCss = css`
     &::last-of-type {
         margin-right: 1em;
     }
+    
+    cursor: pointer;
+    transition: .15s ease-out;
 `;
 
 export default iconCss;
