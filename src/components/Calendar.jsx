@@ -1,10 +1,11 @@
 import React from "react";
 import dateFns from "date-fns";
 import styled from 'styled-components';
+import AppIconDiv from './icondiv';
 
 const MonthHeader = styled.div`    
     border-bottom: 1px solid #eee;
-    background: var(#fff);
+    background: #fff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,6 +14,32 @@ const MonthHeader = styled.div`
     width: 100%;
     
 `;
+
+const MonthLeft = styled.div`
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+`;
+
+const MonthRight = styled.div`
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    justify-content: flex-end;
+    text-align: right;
+`;
+
+const MonthDate = styled.div`
+flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    justify-content: center;
+    text-align: center;
+
+`;
+
 
 class Calendar extends React.Component {
     state = {
@@ -25,19 +52,19 @@ class Calendar extends React.Component {
 
         return (
             <MonthHeader>
-                <div className="col col-start">
-                    <div className="icon" onClick={this.prevMonth}>
+                <MonthLeft >
+                    <AppIconDiv onClick={this.prevMonth}>
                         chevron_left
-                    </div>
-                </div>
-                <div className="col col-center">
-        <span>
-          {dateFns.format(this.state.currentMonth, dateFormat)}
-        </span>
-                </div>
-                <div className="col col-end" onClick={this.nextMonth}>
-                    <div className="icon">chevron_right</div>
-                </div>
+                    </AppIconDiv>
+                </MonthLeft>
+                <MonthDate >
+                    <span>
+                    {dateFns.format(this.state.currentMonth, dateFormat)}
+                    </span>
+                </MonthDate>
+                <MonthRight >
+                    <AppIconDiv onClick={this.nextMonth}>chevron_right</AppIconDiv>
+                </MonthRight>
             </MonthHeader>
         );
     }
@@ -118,11 +145,15 @@ class Calendar extends React.Component {
         return (
             <div className="calendar">
                 {this.renderHeader()}
-                {this.renderDays()}
-                {this.renderCells()}
+
             </div>
         );
     }
 }
 
+/*
+
+{this.renderDays()}
+                {this.renderCells()}
+ */
 export default Calendar;

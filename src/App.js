@@ -87,6 +87,9 @@ class App extends Component {
                         </AppLogoText>
                     </AppLogo>
                 </AppHeader>
+                <main>
+                    <Calendar/>
+                </main>
 
             </AppWrapper>
         );
