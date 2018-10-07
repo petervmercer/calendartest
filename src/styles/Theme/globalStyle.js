@@ -1,4 +1,4 @@
-import styled, {injectGlobal, css} from 'styled-components';
+import {injectGlobal} from 'styled-components';
 
 injectGlobal`
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
