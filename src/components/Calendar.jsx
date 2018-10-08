@@ -93,10 +93,10 @@ const CellMain = styled.div`
     transition: 0.25s ease-out;
     
     &:hover {
-        BigDateNum{
+        
             background: #f9f9f9;
             transition: 0.5s ease-out;        
-        }       
+             
     }
     
     
@@ -113,10 +113,7 @@ const CellMain = styled.div`
         border-left: 10px solid transparent;
         border-image: linear-gradient(45deg, #1a8fff 0%, #53cbf1 40%);
         border-image-slice: 1;
-        BigDateNum{
-            background: #f9f9f9;
-            transition: 0.5s ease-out;        
-        }  
+        
     `}
 
 `;
@@ -141,6 +138,21 @@ const BigDateNum = styled.span`
     right: -.05em;
     transition: .25s ease-out;
     letter-spacing: -.07em;
+    
+     CellMain:hover {
+        
+            background: #f9f9f9;
+            transition: 0.5s ease-out;        
+             
+    }
+    
+    ${props => props.selected && css`
+
+        BigDateNum{
+            background: #f9f9f9;
+            transition: 0.5s ease-out;        
+        }  
+    `}
 `;
 
 const DateRow = styled.div`
@@ -228,8 +240,12 @@ class Calendar extends React.Component {
                         key={day}
                         onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
                     >
-                        <dateNum>{formattedDate}</dateNum>
-                        <BigDateNum>{formattedDate}</BigDateNum>
+                        <DateNum>{formattedDate}</DateNum>
+                        <BigDateNum
+
+                            selected={dateFns.isSameDay(day, selectedDate)}
+
+                        >{formattedDate}</BigDateNum>
 
                     </CellMain>
 
