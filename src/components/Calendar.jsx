@@ -1,6 +1,6 @@
 import React from "react";
 import dateFns from "date-fns";
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import AppIconDiv from './icondiv';
 
 const MonthHeader = styled.div`    
@@ -78,6 +78,84 @@ text-transform: uppercase;
     width: 100%;
 `;
 
+const CellMain = styled.div`
+
+    flex-grow: 0;
+    flex-basis: calc(100% / 7);
+    width: calc(100% / 7);
+    
+    position: relative;
+    height: 5em;
+    border-right: 1px solid var#eee;
+    overflow: hidden;
+    cursor: pointer;
+    background: #fff;
+    transition: 0.25s ease-out;
+    
+    &:hover {
+        BigDateNum{
+            background: #f9f9f9;
+            transition: 0.5s ease-out;        
+        }       
+    }
+    
+    
+    &::last-child {
+    border-right: none;
+    }
+    
+    ${props => props.disabled && css`
+        color: #ccc;
+        pointer-events: none;
+    `}
+    
+    ${props => props.selected && css`
+        border-left: 10px solid transparent;
+        border-image: linear-gradient(45deg, #1a8fff 0%, #53cbf1 40%);
+        border-image-slice: 1;
+        BigDateNum{
+            background: #f9f9f9;
+            transition: 0.5s ease-out;        
+        }  
+    `}
+
+`;
+
+const DateNum = styled.span`
+     position: absolute;
+    font-size: 82.5%;
+    line-height: 1;
+    top: .75em;
+    right: .75em;
+    font-weight: 700;
+`;
+
+const BigDateNum = styled.span`
+    font-weight: 700;
+    line-height: 1;
+    color: #1a8fff;
+    opacity: 0;
+    font-size: 8em;
+    position: absolute;
+    top: -.2em;
+    right: -.05em;
+    transition: .25s ease-out;
+    letter-spacing: -.07em;
+`;
+
+const DateRow = styled.div`
+margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    &:last-child {
+    border-bottom: none;
+}
+`
+
 
 
 
@@ -142,29 +220,30 @@ class Calendar extends React.Component {
                 formattedDate = dateFns.format(day, dateFormat);
                 const cloneDay = day;
                 days.push(
-                    <div
-                        className={`col cell ${
-                            !dateFns.isSameMonth(day, monthStart)
-                                ? "disabled"
-                                : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
-                            }`}
+
+                    <CellMain
+
+                        disabled={!dateFns.isSameMonth(day, monthStart)}
+                        selected={dateFns.isSameDay(day, selectedDate)}
                         key={day}
                         onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
                     >
-                        <span className="number">{formattedDate}</span>
-                        <span className="bg">{formattedDate}</span>
-                    </div>
+                        <dateNum>{formattedDate}</dateNum>
+                        <BigDateNum>{formattedDate}</BigDateNum>
+
+                    </CellMain>
+
                 );
                 day = dateFns.addDays(day, 1);
             }
             rows.push(
-                <div className="row" key={day}>
+                <DateRow key={day}>
                     {days}
-                </div>
+                </DateRow>
             );
             days = [];
         }
-        return <div className="body">{rows}</div>;
+        return <div>{rows}</div>;
     }
 
     onDateClick = day => {
@@ -186,6 +265,7 @@ class Calendar extends React.Component {
             <CalendarDiv>
                 {this.renderHeader()}
                 {this.renderDays()}
+                {this.renderCells()}
 
             </CalendarDiv>
         );
@@ -194,7 +274,23 @@ class Calendar extends React.Component {
 
 /*
 
-{this.renderDays()}
-                {this.renderCells()}
+
+
+
+                <div
+                        className={`col cell ${
+                            !dateFns.isSameMonth(day, monthStart)
+                                ? "disabled"
+                                : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
+                            }`}
+                        key={day}
+                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                    >
+                        <span className="number">{formattedDate}</span>
+                        <span className="bg">{formattedDate}</span>
+                    </div>
+
+
+
  */
 export default Calendar;
