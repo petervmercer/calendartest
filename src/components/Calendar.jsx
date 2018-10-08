@@ -78,6 +78,26 @@ text-transform: uppercase;
     width: 100%;
 `;
 
+const BigDateNum = styled.span`
+    font-weight: 700;
+    line-height: 1;
+    color: #1a8fff;
+    opacity: 0;
+    font-size: 8em;
+    position: absolute;
+    top: -.2em;
+    right: -.05em;
+    transition: .25s ease-out;
+    letter-spacing: -.07em;
+ 
+    
+    ${props => props.selected && css`        
+            opacity: 0.05;
+            transition: .5s ease-in;    
+        
+    `}
+`;
+
 const CellMain = styled.div`
 
     flex-grow: 0;
@@ -86,18 +106,24 @@ const CellMain = styled.div`
     
     position: relative;
     height: 5em;
-    border-right: 1px solid var#eee;
+    border-right: 1px solid #eee;
     overflow: hidden;
     cursor: pointer;
     background: #fff;
     transition: 0.25s ease-out;
     
-    &:hover {
-        
+    &:hover {            
             background: #f9f9f9;
-            transition: 0.5s ease-out;        
-             
+            transition: 0.5s ease-out;
     }
+    
+    &:hover ${BigDateNum} {
+            
+            opacity: 0.05;
+            transition: .5s ease-in;
+    }
+    
+    
     
     
     &::last-child {
@@ -127,33 +153,7 @@ const DateNum = styled.span`
     font-weight: 700;
 `;
 
-const BigDateNum = styled.span`
-    font-weight: 700;
-    line-height: 1;
-    color: #1a8fff;
-    opacity: 0;
-    font-size: 8em;
-    position: absolute;
-    top: -.2em;
-    right: -.05em;
-    transition: .25s ease-out;
-    letter-spacing: -.07em;
-    
-     CellMain:hover {
-        
-            background: #f9f9f9;
-            transition: 0.5s ease-out;        
-             
-    }
-    
-    ${props => props.selected && css`
 
-        BigDateNum{
-            background: #f9f9f9;
-            transition: 0.5s ease-out;        
-        }  
-    `}
-`;
 
 const DateRow = styled.div`
 margin: 0;
